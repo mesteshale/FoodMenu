@@ -1,12 +1,25 @@
 {% extends 'food/base.html' %}
 {% block body %} 
-    <div class="row">
-        <div class="col-md-12">
-            <form method="POST">
-                {% csrf_token %}
-                <h2>Are you sure you want to delete{{ item.item_name}}</h2>
-                <button type="submit">Confirm</button>
-            </form>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-body text-center p-5">
+                    <i class="fas fa-exclamation-triangle text-warning mb-4" style="font-size: 3rem;"></i>
+                    <h2 class="mb-4">Delete Confirmation</h2>
+                    <p class="lead mb-4">Are you sure you want to delete "{{ item.item_name }}"?</p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn btn-danger btn-lg btn-animated btn-pulse">
+                                <i class="fas fa-trash-alt me-2"></i>Delete
+                            </button>
+                            <a href="{% url 'food:detail' item.id %}" class="btn btn-secondary btn-lg btn-animated">
+                                <i class="fas fa-times me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
