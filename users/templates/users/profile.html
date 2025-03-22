@@ -1,4 +1,19 @@
 {% extends 'food/base.html' %}  
 {% block body %} 
-    <h1>{{user.username}}</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card mt-4">
+                <div class="card-body text-center">
+                    <img src="{{ user.profile.image.url }}" class="rounded-circle img-fluid mb-3" style="width: 150px; height: 150px; object-fit: cover;" alt="Profile Picture">
+                    <h2 class="card-title">{{ user.username }}</h2>
+                    <p class="card-text">{{ user.email }}</p>
+                    {% if user.profile.location %}
+                        <p class="card-text"><small class="text-muted"><i class="fas fa-map-marker-alt"></i> {{ user.profile.location }}</small></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}  
