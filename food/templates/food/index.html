@@ -1,33 +1,36 @@
 {% extends 'food/base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Menu</title>
-</head>
-<body>
-    
-        {% block body %}
-            {% for item in item_list %}
-            <div class="row">
-              <div class="col-md-3 offset-md-2">
-                <img src="{{ item.item_image_link }}" class="card" height="250px" width="250px"/>
-              </div>
-              <div class="col-md-4">
-                <h3>{{ item.item_name}}</h3>
-                <h5>{{ item.item_desc}}</h6>
-                <h6>${{ item.item_price}}</h6>
-              </div>
-              <div class="col-md-2">
-                <a class="btn btn-primary" href="{% url 'food:detail' item.id %}">Detail</a>
-              </div>
-            </div>
-            {% endfor %}
-        {% endblock %}
-   
 
-</body>
-</html>
+{% block body %}
+    <div class="container py-5">
+        <div class="row">
+            {% for item in item_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="row g-0">
+                            <div class="col-4">
+                                <img src="{{ item.item_image_link }}" class="img-fluid rounded-start h-100" style="object-fit: cover;"/>
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body d-flex flex-column h-100">
+                                    <h3 class="card-title">{{ item.item_name }}</h3>
+                                    <h5 class="card-text">{{ item.item_desc }}</h5>
+                                    <h6 class="card-text text-primary">${{ item.item_price }}</h6>
+                                    <div class="d-grid mt-auto">
+                                        <a class="btn btn-primary btn-lg btn-animated" href="{% url 'food:detail' item.id %}">
+                                            <i class="fas fa-info-circle me-2"></i>Detail
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if forloop.counter|divisibleby:3 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
 
   
