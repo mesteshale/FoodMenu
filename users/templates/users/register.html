@@ -1,8 +1,155 @@
 {% extends 'food/base.html' %}
-    {% block body %} 
-    <form method="POST">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Signup</button>
-    </form>
+
+{% block body %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Create Account</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Please correct the errors below.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-user me-2"></i>First Name
+                                </label>
+                                <div class="input-group">
+                                    {{ form.first_name }}
+                                </div>
+                                {% if form.first_name.errors %}
+                                <small class="text-danger">{{ form.first_name.errors|striptags }}</small>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-user me-2"></i>Last Name
+                                </label>
+                                <div class="input-group">
+                                    {{ form.last_name }}
+                                </div>
+                                {% if form.last_name.errors %}
+                                <small class="text-danger">{{ form.last_name.errors|striptags }}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-user-circle me-2"></i>Username
+                            </label>
+                            <div class="input-group">
+                                {{ form.username }}
+                            </div>
+                            {% if form.username.errors %}
+                            <small class="text-danger">{{ form.username.errors|striptags }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-envelope me-2"></i>Email
+                            </label>
+                            <div class="input-group">
+                                {{ form.email }}
+                            </div>
+                            {% if form.email.errors %}
+                            <small class="text-danger">{{ form.email.errors|striptags }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-lock me-2"></i>Password
+                            </label>
+                            <div class="input-group">
+                                {{ form.password1 }}
+                            </div>
+                            {% if form.password1.errors %}
+                            <small class="text-danger">{{ form.password1.errors|striptags }}</small>
+                            {% endif %}
+                            {% if form.password1.help_text %}
+                            <small class="text-muted">{{ form.password1.help_text }}</small>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-lock me-2"></i>Confirm Password
+                            </label>
+                            <div class="input-group">
+                                {{ form.password2 }}
+                            </div>
+                            {% if form.password2.errors %}
+                            <small class="text-danger">{{ form.password2.errors|striptags }}</small>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 btn-lg btn-animated mb-3">
+                            <i class="fas fa-user-plus me-2"></i>Sign Up
+                        </button>
+                    </form>
+                </div>
+                <div class="card-footer text-center py-3 bg-light">
+                    <p class="mb-0">Already have an account? 
+                        <a href="{% url 'login' %}" class="text-decoration-none">Login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style Django's default form inputs to match Bootstrap */
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.375rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    input[type="email"]:focus {
+        color: #212529;
+        background-color: #fff;
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+    }
+
+    /* Style help text */
+    .text-muted {
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+
+    /* Style error messages */
+    .text-danger {
+        font-size: 0.875em;
+        margin-top: 0.25rem;
+    }
+</style>
 {% endblock %}

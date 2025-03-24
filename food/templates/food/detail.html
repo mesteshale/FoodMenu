@@ -7,9 +7,10 @@
         </div>
         <div class="col-md-6">
             <div class="py-4">
-                <h1 class="mb-3">{{ item.item_name }}</h1>
-                <h4 class="mb-3">{{ item.item_desc }}</h4>
-                <h6 class="text-primary mb-4">${{ item.item_price }}</h6>
+                <h1 class="mb-3">{{ object.item_name }}</h1>
+                <h4 class="mb-3">{{ object.item_desc }}</h4>
+                <h6 class="text-primary mb-4">${{ object.item_price }}</h6>
+                <h6 class="mb-4">{{ object.user_name }}</h6>
                 <div class="d-grid gap-2">
                     <a href="{% url 'food:delete_item' item.id %}" class="btn btn-danger btn-lg w-100 btn-animated btn-pulse">
                         <i class="fas fa-trash-alt me-2"></i>Delete
