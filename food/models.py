@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from category.models import Category
 # Create your models here.
 class Item (models.Model):
     # to see item_name on django shell
@@ -10,6 +11,7 @@ class Item (models.Model):
     item_name = models.CharField(max_length=200)
     item_desc = models.CharField(max_length=200)
     item_price = models.IntegerField()
+    cat_name = models.ForeignKey(Category,on_delete=models.CASCADE)
     item_image_link = models.CharField(max_length = 500,default = "https://www.thefuzzyduck.co.uk/wp-content/uploads/2024/05/image-coming-soon-placeholder-01-660x660.png")
 
     def get_absolute_url(self):
