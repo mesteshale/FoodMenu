@@ -52,7 +52,7 @@ def create_item(request):
  
 class CreateItem(CreateView):
     model = Item;
-    fields = ['item_name','item_desc','item_price','item_image_link']
+    fields = ['item_name','item_desc','item_price','item_image_link','group']
     template_name = 'food/create.html'
  
     def form_valid(self,form):
